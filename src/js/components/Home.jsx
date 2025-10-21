@@ -1,28 +1,36 @@
-import React from "react";
+import React,{useState} from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
-//create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-            
+	let [tarea, setTarea]=useState("")
+	let [lista, setLista]=useState([])
+    const escribirTarea = (event) =>{
+		setTarea (event.target.value)
+    }
+	const agregar = (event) =>{
+		if (event.key==="Enter") {
+		setLista ([...lista, tarea])
+		setTarea ("")
+	}
+}
+const eliminarTarea = (posicion) =>{
+	setLista (lista.filter ((item, index)=>index!==posicion))
+}
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+	return (
+	<div className="text-center d-flex flex-column">	
+	    <h1 className="text-secondary">TodoList</h1>
+		<input className="form-control p-4" type="text"  placeholder="agrega una tarea" onChange={escribirTarea} value={tarea} onKeyDown={agregar}/>
+        <ul className="list-unstyled text-start">
+			{lista.map((item,index)=>(<li key={index} className="paper">
+			{item}<button onClick={()=>eliminarTarea(index)}>❌</button></li>))}
+		</ul>
+        <p className="me-auto">Tienes {lista.length} {lista.length === 1 ? "tarea" : "tareas"}</p>
+  </div>
+  
+			
 	);
 };
 
 export default Home;
+
