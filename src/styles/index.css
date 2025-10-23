@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap');
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .paper {
   background-color: white;
   position: relative;
@@ -40,14 +45,15 @@ body {
   padding: 2em;
 }
 
-.paper button {
+.list-group-item button {
   opacity: 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  transition: opacity 0.2s ease;
 }
 
-.paper:hover button {
+.list-group-item:hover button {
   opacity: 1;
 }
